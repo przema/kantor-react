@@ -1,6 +1,6 @@
 import "./style.css";
 
-const Form = () => (
+const Form = ({ onBuyingChange, onSelectChange }) => (
     <form className="form">
         <fieldset className="form__fieldset">
             <legend className="form__legend">Przelicznik walut</legend>
@@ -9,7 +9,7 @@ const Form = () => (
             <ul className="form__list">
                 <li className="form__listItem">
                     <label>
-                        <input type="radio" name="choice" value="buying" defaultChecked className="radio-1" />
+                        <input type="radio" name="choice" value="buying" defaultChecked onChange={onBuyingChange} className="radio-1" />
                         <span className="form__labelText">kupuję</span></label>
                 </li>
                 <li className="form__listItem">
@@ -34,7 +34,13 @@ const Form = () => (
             </p>
         </fieldset>
         <p>
-            <button className="form__button">Przelicz</button>
+            <button
+                onClick={onBuyingChange}
+                onChange={onSelectChange}
+                className="form__button"
+            >
+                Przelicz
+            </button>
         </p>
     </form>
 );
