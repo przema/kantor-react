@@ -1,6 +1,6 @@
 import "./style.css";
 
-const Form = ({ onBuyingChange, onSelectChange }) => (
+const Form = ({ onBuyingChange, onSelectChange, onAmountChange }) => (
     <form className="form">
         <fieldset className="form__fieldset">
             <legend className="form__legend">Przelicznik walut</legend>
@@ -19,7 +19,7 @@ const Form = ({ onBuyingChange, onSelectChange }) => (
                 </li>
             </ul>
             <label><span className="form__labelText">Wybierz walutę:</span></label>
-            <select className="form__field" name="currencyToBuy">
+            <select className="form__field" name="currencyToBuy" onChange={onSelectChange} >
                 <option value="USD">USD dolar amerykański</option>
                 <option value="EUR">EUR euro</option>
                 <option value="CHF">CHF frank szwajcarski</option>
@@ -29,7 +29,7 @@ const Form = ({ onBuyingChange, onSelectChange }) => (
                 <label>
                     <span className="form__labelText">Podaj kwotę:</span>
                     <input required className="form__field--sum" name="sum" type="number" min="1"
-                        step="any" defaultValue="1" />
+                        step="any" defaultValue="1" onChange={onAmountChange} />
                 </label>
             </p>
         </fieldset>
@@ -37,6 +37,7 @@ const Form = ({ onBuyingChange, onSelectChange }) => (
             <button
                 onClick={onBuyingChange}
                 onChange={onSelectChange}
+                onChange={onAmountChange}
                 className="form__button"
             >
                 Przelicz
