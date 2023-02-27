@@ -4,42 +4,96 @@ import Form from "./Form";
 import Calculation from "./Calculation";
 
 function App() {
-  
+
   const [buying, setBuying] = useState(true);
-  const onBuyingChange = ({target}) => {
+  const onBuyingChange = ({ target }) => {
     setBuying(target.checked);
   };
 
   const [currency, setCurrency] = useState("USD");
-  const onSelectChange = ({selection}) => {
-    setCurrency(selection.value);
+  const onSelectChange = ({ target }) => {
+    setCurrency(target.value);
   };
 
   const [amount, setAmount] = useState(1);
-  const onAmountChange = ({amount}) => {
-    setAmount(amount.value);
+  const onAmountChange = ({ target }) => {
+    setAmount(target.value);
   };
 
-  
+  const [calculation, setCalculation] = useState();
 
-  
+  const getCalculate = (buying, currency, amount) => {
+
+    switch (buying) {
+      case true:
+        switch (currency) {
+          case "USD":
+            setCalculation((amount * 4.84).toFixed(2));
+            break;
+          case "EUR":
+            setCalculation((amount * 4.78).toFixed(2));
+            break;
+          case "CHF":
+            setCalculation((amount * 4.84).toFixed(2));
+            break;
+          case "GBP":
+            setCalculation((amount * 5.47).toFixed(2));
+            break;
+          default:
+            setCalculation("N/A");
+            break;
+        }
+        break;
+
+      case false:
+        switch (currency) {
+          case "USD":
+            setCalculation((amount * 4.75).toFixed(2));
+            break;
+          case "EUR":
+            setCalculation((amount * 4.63).toFixed(2));
+            break;
+          case "CHF":
+            setCalculation((amount * 4.77).toFixed(2));
+            break;
+          case "GBP":
+            setCalculation((amount * 5.35).toFixed(2));
+            break;
+          default:
+            setCalculation("N/A");
+            break;
+        }
+        break;
+
+      default:
+        setCalculation("");
+        break;
+    };
+  };
 
   return (
     <div className="container">
       <header>
-        <h1>DUSIGROSZ</h1>
-        <h2>TWÓJ KANTOR</h2>
+        <h1>KANTOR</h1>
       </header>
       <main>
         <div className="main__tableContainer">
           <Table />
           <div>
-            <Form 
-            setBuying={setBuying}
-            setCurrency={setCurrency}
-            setAmount={setAmount}
+            <Form
+              calculation={calculation}
+              buying={buying}
+              currency={currency}
+              amount={amount}
+              onBuyingChange={onBuyingChange}
+              onSelectChange={onSelectChange}
+              onAmountChange={onAmountChange}
+              getCalculate={getCalculate}
             />
-            <Calculation />
+            <Calculation
+              calculation={calculation}
+              currency={currency}
+            />
           </div>
         </div>
       </main>
