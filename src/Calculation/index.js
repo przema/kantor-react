@@ -1,9 +1,9 @@
 import "./style.css";
 
-const Calculation = () => (
+const Calculation = ({ calculation, currency }) => (
     <p className="calculation">
-        Całkowita wartość: <strong className="calculation">N/A</strong> <strong><span
-            className="currencyName"></span></strong>
+        Całkowita wartość: <strong>{calculation}</strong><strong><span
+            className="currencyName"> {currency}</span></strong>
     </p>
 )
 
