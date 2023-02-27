@@ -1,11 +1,15 @@
 import "./style.css";
 
-const Form = ({ buying, onBuyingChange, currency, onSelectChange, amount, onAmountChange, getCalculate }) => {
+const Form = ({ selectedOption, setSelectedOption, currency, onSelectChange, amount, onAmountChange, getCalculate }) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        // getCalculate(buying, currency, amount);
     };
+
+    const handleChange = (event) => {
+        const selectedOption = event.target.value;
+        setSelectedOption(selectedOption);
+    }
 
     return (
 
@@ -23,8 +27,9 @@ const Form = ({ buying, onBuyingChange, currency, onSelectChange, amount, onAmou
                             <input
                                 type="radio"
                                 name="choice"
-                                checked={buying}
-                                onChange={onBuyingChange}
+                                value="buying"
+                                checked={selectedOption === "buying"}
+                                onChange={handleChange}
                             />
                             <span className="form__labelText">kupuję</span>
                         </label>
@@ -34,6 +39,9 @@ const Form = ({ buying, onBuyingChange, currency, onSelectChange, amount, onAmou
                             <input
                                 type="radio"
                                 name="choice"
+                                value="selling"
+                                checked={selectedOption === "selling"}
+                                onChange={handleChange}
                             />
                             <span className="form__labelText">sprzedaję</span>
                         </label>
@@ -70,7 +78,7 @@ const Form = ({ buying, onBuyingChange, currency, onSelectChange, amount, onAmou
             <p>
                 <button
                     className="form__button"
-                    onClick={() => getCalculate(buying, currency, amount)}
+                    onClick={() => getCalculate(selectedOption, currency, amount)}
                 >
                     Przelicz
                 </button>
