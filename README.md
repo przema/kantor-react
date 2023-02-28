@@ -21,6 +21,8 @@ https://przema.github.io/kantor-react/
 
 ## Screenshot
 
+![screenshot](public/screenshot.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
