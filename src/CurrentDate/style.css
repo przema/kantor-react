@@ -1,0 +1,13 @@
+.dateContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-family: 'PT Mono', monospace;
+}
+
+.dateContainer__time {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 15px;
+    width: 60px;
+}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Table from "./Table";
 import Form from "./Form";
 import Calculation from "./Calculation";
+import CurrentDate from "./CurrentDate";
 
 function App() {
 
@@ -68,6 +69,9 @@ function App() {
         <h1>KANTOR</h1>
       </header>
       <main>
+        <div>
+          <CurrentDate />
+        </div>
         <div className="main__tableContainer">
           <Table />
           <div>
